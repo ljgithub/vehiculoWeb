@@ -22,7 +22,7 @@ import javax.persistence.criteria.CriteriaBuilder;
 public class ColaboradorDaoImpl implements IColaboradorDao {
 
     //1.- Creamos en ManagerFactory
-            EntityManagerFactory emf = Persistence.createEntityManagerFactory("ProyectoVehiculosPU");                                                                               
+            EntityManagerFactory emf = Persistence.createEntityManagerFactory("invenrarioPU");                                                                               
             //2.- Creamos en EntityManager
             EntityManager em = emf.createEntityManager();
             //3.- Creamos la transacción es decir el objeto que conlleva la transaccion (EntityTransaction)
