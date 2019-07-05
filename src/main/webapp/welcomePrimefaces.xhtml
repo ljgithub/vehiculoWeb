@@ -9,6 +9,7 @@
         <h:head>
             <f:facet name="first">
                 <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+                <script language="javascript" src="jquery-3.4.1.slim.min.js"></script>
                 <title>PrimeFaces</title>
             </f:facet>
         </h:head>
@@ -28,18 +29,19 @@
                 <p:layoutUnit position="west" size="175" header="Left" collapsible="true">
                     <p:menu>
                         <p:submenu label="Resources">
-                            <p:menuitem value="Demo" url="http://www.primefaces.org/showcase-labs/ui/home.jsf" />
-                            <p:menuitem value="Documentation" url="http://www.primefaces.org/documentation.html" />
-                            <p:menuitem value="Forum" url="http://forum.primefaces.org/" />
-                            <p:menuitem value="Themes" url="http://www.primefaces.org/themes.html" />
-
+                            <p:menuitem value="Colaborador" outcome="ColaboradorPage" />
+                            <p:menuitem value="Historial" url="" />
+                            <p:menuitem value="Orden Trabajo" url="" />
+                            <p:menuitem value="Revision" url="" />
+                            <p:menuitem value="Tipo" url="" />
+                            <p:menuitem value="Vehiculo" url="" />
                         </p:submenu>
 
                     </p:menu>
                 </p:layoutUnit>
 
                 <p:layoutUnit position="center">
-                    Welcome to PrimeFaces
+                    <ui:insert name="content"/>
                 </p:layoutUnit>
 
             </p:layout>
