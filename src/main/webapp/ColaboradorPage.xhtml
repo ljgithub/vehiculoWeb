@@ -14,23 +14,31 @@
     </ui:define>
 
     <ui:define name="content">
-        <h:panelGrid columns="2">
-            <p:panel>
-                <p:inputText>
-                    Nombres
-                </p:inputText>
-                <p:inputText>
-                    Apellidos
-                </p:inputText>
-                <p:inputText>
-                    Estado
-                </p:inputText>
-            </p:panel>                      
-        </h:panelGrid>
-        
-      
-
         <h:panelGrid>
+            <p:outputLabel> Nombre: </p:outputLabel>
+            <p:inputText size="30"></p:inputText>
+            <p:outputLabel> Apellido: </p:outputLabel>
+            <p:inputText></p:inputText>
+            <p:outputLabel> Email: </p:outputLabel>
+            <p:inputText></p:inputText>
+            <p:outputLabel> Dirección </p:outputLabel>
+            <p:inputText></p:inputText>
+            <p:outputLabel> Fono: </p:outputLabel>
+            <p:inputText></p:inputText>           
+        </h:panelGrid>
+
+        <h:panelGrid style="float: left">
+            <p:panel>
+                <p:button value="Insertar">                    
+                </p:button>
+                <p:button value="Modificar">                    
+                </p:button>
+                <p:button value="Eliminar">                    
+                </p:button>
+            </p:panel>
+        </h:panelGrid>
+
+        <h:panelGrid style="padding-top: 60px">
             <p:panel>
                 <p:dataTable var="car" value="#{dtBasicView.cars}">
                     <p:column headerText="Nombres">
