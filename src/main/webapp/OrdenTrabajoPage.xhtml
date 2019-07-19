@@ -6,11 +6,11 @@
                 xmlns:h="http://xmlns.jcp.org/jsf/html">
 
     <ui:define name="titulo">
-        Colaborador
+        Ordenes de Trabajo
     </ui:define>
 
     <ui:define name="cabecera">
-        <h1>Mantenimiento de Colaboradores</h1>
+        <h1>Mantenimiento de Ordenes de Trabajo</h1>
     </ui:define>
 
     <ui:define name="content">
@@ -19,18 +19,16 @@
             <tr>
                 <td>
                     <h:panelGrid columns="1">            
-                        <p:outputLabel> Nombre: </p:outputLabel>
-                        <p:inputText size="30" value="#{colaboradorBean.nombres}"></p:inputText>
-                        <p:outputLabel> Apellido: </p:outputLabel>
-                        <p:inputText size="30" value="#{colaboradorBean.apellidos}></p:inputText>
-                        <p:outputLabel> Email: </p:outputLabel>
-                        <p:inputText size="30" ></p:inputText>
-                        <p:outputLabel> Dirección </p:outputLabel>
-                        <p:inputText size="30" ></p:inputText>
-                        <p:outputLabel> Fono: </p:outputLabel>
+                        <p:outputLabel> Informacion Adicional: </p:outputLabel>
+                        <p:inputText size="30"></p:inputText>
+                        <p:outputLabel> Fecha Revision: </p:outputLabel>
+                        <p:inputText size="30"></p:inputText>
+                        <p:outputLabel> Costo Total: </p:outputLabel>
+                        <p:inputText size="30"></p:inputText>
+                        <p:outputLabel> Vehiculo </p:outputLabel>
+                        <p:inputText size="30"></p:inputText>
+                        <p:outputLabel> Colaborador: </p:outputLabel>
                         <p:inputText size="30"></p:inputText>           
-                        <p:outputLabel> Estado: </p:outputLabel>
-                        <p:inputText size="30" value="#{colaboradorBean.estado}"></p:inputText>
                     </h:panelGrid>
                 </td>
                 <td style="vertical-align: initial">
@@ -38,26 +36,32 @@
 
                     <h:panelGrid style="float: outside">
                         <p:panel>
-                            <p:commandButton value="Insertar" icon="fa fa-save">                    
-                            </p:commandButton>
-                            <p:commandButton value="Actualizar" icon="fa fa-pencil-square-o">                    
-                            </p:commandButton>
+                            <p:button value="Insertar">                    
+                            </p:button>
+                            <p:button value="Modificar">                    
+                            </p:button>
                             <p:button value="Eliminar">                    
                             </p:button>
                         </p:panel>
                     </h:panelGrid>
                     <h:panelGrid>
                         <p:panel>
-                            <p:dataTable var="car" value="#{car.id}">
-                                <p:column headerText="Nombres">
+                            <p:dataTable var="car" value="#{dtBasicView.cars}">
+                                <p:column headerText="Informacion Adicional">
                                     <h:outputText value="#{car.id}" />
                                 </p:column>
 
-                                <p:column headerText="Apellidos">
+                                <p:column headerText="Fecha">
                                     <h:outputText value="#{car.year}" />
                                 </p:column>
 
-                                <p:column headerText="Estado">
+                                <p:column headerText="Costo">
+                                    <h:outputText value="#{car.brand}" />
+                                </p:column>
+                                <p:column headerText="Vehiculo">
+                                    <h:outputText value="#{car.brand}" />
+                                </p:column>
+                                <p:column headerText="Colaborador">
                                     <h:outputText value="#{car.brand}" />
                                 </p:column>
                             </p:dataTable>
@@ -66,10 +70,5 @@
                 </td>
             </tr>
         </table>
-
-
-
-
     </ui:define>
-
 </ui:composition>

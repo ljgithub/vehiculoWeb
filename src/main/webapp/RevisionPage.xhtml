@@ -19,18 +19,16 @@
             <tr>
                 <td>
                     <h:panelGrid columns="1">            
-                        <p:outputLabel> Nombre: </p:outputLabel>
-                        <p:inputText size="30" value="#{colaboradorBean.nombres}"></p:inputText>
-                        <p:outputLabel> Apellido: </p:outputLabel>
-                        <p:inputText size="30" value="#{colaboradorBean.apellidos}></p:inputText>
-                        <p:outputLabel> Email: </p:outputLabel>
-                        <p:inputText size="30" ></p:inputText>
-                        <p:outputLabel> Dirección </p:outputLabel>
-                        <p:inputText size="30" ></p:inputText>
-                        <p:outputLabel> Fono: </p:outputLabel>
+                        <p:outputLabel> Motivo: </p:outputLabel>
+                        <p:inputText size="30"></p:inputText>
+                        <p:outputLabel> Numero de Componenes Revisados: </p:outputLabel>
+                        <p:inputText size="30"></p:inputText>
+                        <p:outputLabel> Detalle: </p:outputLabel>
+                        <p:inputText size="30"></p:inputText>
+                        <p:outputLabel> Observacion: </p:outputLabel>
+                        <p:inputText size="30"></p:inputText>
+                        <p:outputLabel> Numero de Orden Trabajo : </p:outputLabel>
                         <p:inputText size="30"></p:inputText>           
-                        <p:outputLabel> Estado: </p:outputLabel>
-                        <p:inputText size="30" value="#{colaboradorBean.estado}"></p:inputText>
                     </h:panelGrid>
                 </td>
                 <td style="vertical-align: initial">
@@ -38,26 +36,32 @@
 
                     <h:panelGrid style="float: outside">
                         <p:panel>
-                            <p:commandButton value="Insertar" icon="fa fa-save">                    
-                            </p:commandButton>
-                            <p:commandButton value="Actualizar" icon="fa fa-pencil-square-o">                    
-                            </p:commandButton>
+                            <p:button value="Insertar">                    
+                            </p:button>
+                            <p:button value="Modificar">                    
+                            </p:button>
                             <p:button value="Eliminar">                    
                             </p:button>
                         </p:panel>
                     </h:panelGrid>
                     <h:panelGrid>
                         <p:panel>
-                            <p:dataTable var="car" value="#{car.id}">
-                                <p:column headerText="Nombres">
+                            <p:dataTable var="car" value="#{dtBasicView.cars}">
+                                <p:column headerText="Motivo">
                                     <h:outputText value="#{car.id}" />
                                 </p:column>
 
-                                <p:column headerText="Apellidos">
+                                <p:column headerText="Componenes Revisados">
                                     <h:outputText value="#{car.year}" />
                                 </p:column>
 
-                                <p:column headerText="Estado">
+                                <p:column headerText="Detalle">
+                                    <h:outputText value="#{car.brand}" />
+                                </p:column>
+                                <p:column headerText="Observacion">
+                                    <h:outputText value="#{car.brand}" />
+                                </p:column>
+                                <p:column headerText="Numero de Orden Trabajo">
                                     <h:outputText value="#{car.brand}" />
                                 </p:column>
                             </p:dataTable>

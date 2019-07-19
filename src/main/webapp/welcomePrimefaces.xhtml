@@ -10,7 +10,7 @@
             <f:facet name="first">
                 <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
                 <script language="javascript" src="jquery-3.4.1.slim.min.js"></script>
-                <title>PrimeFaces</title>
+                <title>CONTROL DE ACCESORIOS INFORMATICOS</title>
             </f:facet>
         </h:head>
 
@@ -18,23 +18,23 @@
 
             <p:layout fullPage="true">
 
-                <p:layoutUnit position="north" size="100" resizable="true" closable="true" collapsible="true">
-                    Header
+                <p:layoutUnit position="north" size="100" resizable="false" closable="false" collapsible="false"  >
+                        <img src="img/Banner_Servicios-it_A.jpg" style="width: 100%"/>
                 </p:layoutUnit>
 
                 <p:layoutUnit position="south" size="100" closable="true" collapsible="true">
-                    Footer
+                    <img src="img/footer.jpg" style="width: 100%"/>
                 </p:layoutUnit>
 
-                <p:layoutUnit position="west" size="175" header="Left" collapsible="true">
+                <p:layoutUnit position="west" size="175" header="Ocultar" collapsible="true">
                     <p:menu>
-                        <p:submenu label="Resources">
+                        <p:submenu label="Modulos">
                             <p:menuitem value="Colaborador" outcome="ColaboradorPage" />
-                            <p:menuitem value="Historial" url="" />
-                            <p:menuitem value="Orden Trabajo" url="" />
-                            <p:menuitem value="Revision" url="" />
-                            <p:menuitem value="Tipo" url="" />
-                            <p:menuitem value="Vehiculo" url="" />
+                            <p:menuitem value="Historial" outcome="HistorialPage" />
+                            <p:menuitem value="Orden Trabajo" outcome="OrdenTrabajoPage"/>
+                            <p:menuitem value="Revision" outcome="RevisionPage" />
+                            <p:menuitem value="Tipo" outcome="TipoVehiculoPage" />
+                            <p:menuitem value="Vehiculo" outcome="VehiculoPage" />
                         </p:submenu>
 
                     </p:menu>

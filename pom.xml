@@ -18,7 +18,7 @@
         <dependency>
             <groupId>org.primefaces</groupId>
             <artifactId>primefaces</artifactId>
-            <version>5.0</version>
+            <version>6.0</version>
         </dependency>
         <dependency>
             <groupId>org.eclipse.persistence</groupId>
@@ -57,6 +57,17 @@
             <version>3.3.1</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.primefaces.extensions
+            </groupId>
+            <artifactId>all-themes</artifactId>
+            <version>1.0.8</version>
+        </dependency>
+        <dependency>
+            <groupId>org.webjars</groupId>
+            <artifactId>font-awesome</artifactId>
+            <version>5.8.2</version>
+        </dependency>
     </dependencies>
 
     <build>
