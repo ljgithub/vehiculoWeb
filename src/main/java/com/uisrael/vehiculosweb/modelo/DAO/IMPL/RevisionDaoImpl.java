@@ -18,59 +18,50 @@ import javax.persistence.TypedQuery;
  *
  * @author jjmm7
  */
-public class RevisionDaoImpl implements IRevisionDao {
-
-    EntityManagerFactory emf = Persistence.createEntityManagerFactory("ProyectoVehiculosPU");
-    EntityManager em = emf.createEntityManager();
-
-    EntityTransaction et = em.getTransaction();
+public class RevisionDaoImpl extends GenericaDaoImpl<Revision> implements IRevisionDao {
 
     @Override
     public void insertarRevision(Revision r) {
-        try {
-
-            et.begin();
-            em.persist(r);
-
-            et.commit();
-
-            System.out.println("DAO:  Se inserto Revision con los siguientes params " + r);
-        } catch (Exception e) {
-            System.out.println("DAO:  Se produjo un error :" + e.getStackTrace());
-        }
+        this.create(r);
+                
     }
 
     @Override
     public List<Revision> listarRevisiones() {
+        /*
         String sentencia = "Select r from Revision r";
         
         TypedQuery typed = em.createQuery(sentencia, Revision.class);
         
         List<Revision> resultado = typed.getResultList();
                 
-        return resultado;
+        return resultado;*/
+        return null;
     }
 
     @Override
     public Revision buscarRevision(int id) {
+        
         String sentencia = "Select r from Revision r where r.idRevision = " + id;
         
-        TypedQuery typed = em.createQuery(sentencia, Revision.class);
+        TypedQuery<Revision> typed = this.entityManager.createQuery(sentencia, Revision.class);
         
-        Revision resultado = (Revision)typed.getSingleResult();
+        Revision resultado = typed.getSingleResult();
                 
         return resultado;
     }
 
     @Override
     public List<Revision> buscarRevisionPorMotivo(String motivo) {
+       /*
         String sentencia = "Select r from Revision r where r.motivo like '%" + motivo + "%'" ;
         
         TypedQuery typed = em.createQuery(sentencia, Revision.class);
         
         List<Revision> resultado = typed.getResultList();
                 
-        return resultado;
+        return resultado;*/
+       return null;
     }
 
 }

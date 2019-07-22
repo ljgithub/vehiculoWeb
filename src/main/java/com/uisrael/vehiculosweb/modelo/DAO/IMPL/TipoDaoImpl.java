@@ -18,26 +18,12 @@ import javax.persistence.TypedQuery;
  *
  * @author jjmm7
  */
-public class TipoDaoImpl implements ITipoDao {
+public class TipoDaoImpl extends GenericaDaoImpl<Tipo> implements ITipoDao {
 
-    EntityManagerFactory emf = Persistence.createEntityManagerFactory("ProyectoVehiculosPU");
-    EntityManager em = emf.createEntityManager();
-
-    EntityTransaction et = em.getTransaction();
 
     @Override
     public void insertarTipo(Tipo t) {
-        try {
-
-            et.begin();
-
-            em.persist(t);
-            et.commit();
-
-            System.out.println("DAO:  Se inserto el tipo con los siguientes params " + t);
-        } catch (Exception e) {
-            System.out.println("DAO:  Se produjo un error :" + e.getStackTrace());
-        }
+        this.create(t);
     }
 
     @Override
@@ -45,18 +31,19 @@ public class TipoDaoImpl implements ITipoDao {
 
         String sentencia = "select t from Tipo t";
 
-        TypedQuery<Tipo> typed = em.createQuery(sentencia, Tipo.class);
+        TypedQuery<Tipo> typed = this.entityManager.createQuery(sentencia, Tipo.class);
                 
         List<Tipo> resultado = typed.getResultList();
                         
-        return resultado;
+        return resultado;        
     }
 
     @Override
     public Tipo buscarTipo(int id) {
+        
         String sentencia = "select t from Tipo t where t.idTipoVehiculo = " +id;
 
-        TypedQuery<Tipo> typed = em.createQuery(sentencia, Tipo.class);
+        TypedQuery<Tipo> typed = this.entityManager.createQuery(sentencia, Tipo.class);
                 
         Tipo resultado = typed.getSingleResult();
                         
@@ -65,13 +52,16 @@ public class TipoDaoImpl implements ITipoDao {
 
     @Override
     public List<Tipo> buscarTipoPorFuncion(String funcion) {
+        /*
         String sentencia = "select t from Tipo t where t.funcionTipoVehiculo like '%" + funcion + "%' ";
 
         TypedQuery<Tipo> typed = em.createQuery(sentencia, Tipo.class);
                 
         List<Tipo> resultado = typed.getResultList();
                         
-        return resultado;
+        return resultado;*/
+        return null;
+                
     }
 
 }

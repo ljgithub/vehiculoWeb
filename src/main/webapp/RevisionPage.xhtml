@@ -15,65 +15,61 @@
 
     <ui:define name="content">
 
-        <table border="1">
-            <tr>
-                <td>
-                    <h:panelGrid columns="1">            
-                        <p:outputLabel> Motivo: </p:outputLabel>
-                        <p:inputText size="30"></p:inputText>
-                        <p:outputLabel> Numero de Componenes Revisados: </p:outputLabel>
-                        <p:inputText size="30"></p:inputText>
-                        <p:outputLabel> Detalle: </p:outputLabel>
-                        <p:inputText size="30"></p:inputText>
-                        <p:outputLabel> Observacion: </p:outputLabel>
-                        <p:inputText size="30"></p:inputText>
-                        <p:outputLabel> Numero de Orden Trabajo : </p:outputLabel>
-                        <p:inputText size="30"></p:inputText>           
-                    </h:panelGrid>
-                </td>
-                <td style="vertical-align: initial">
+        <h:form>
+            <table border="1">
+                <tr>
+                    <td>
+                        <h:panelGrid columns="1">            
+                            <p:outputLabel> Motivo: </p:outputLabel><p:inputText size="30"></p:inputText>
+
+                            <p:outputLabel> Numero de Componenes Revisados: </p:outputLabel><p:inputText size="30"></p:inputText>
+
+                            <p:outputLabel> Detalle: </p:outputLabel><p:inputText size="30"></p:inputText>
+
+                            <p:outputLabel> Observacion: </p:outputLabel><p:inputText size="30"></p:inputText>
+
+                            <p:outputLabel> Numero de Orden Trabajo : </p:outputLabel><p:inputText size="30"></p:inputText>           
+
+                        </h:panelGrid>
+                    </td>
+                    <td style="vertical-align: initial">
 
 
-                    <h:panelGrid style="float: outside">
-                        <p:panel>
-                            <p:button value="Insertar">                    
-                            </p:button>
-                            <p:button value="Modificar">                    
-                            </p:button>
-                            <p:button value="Eliminar">                    
-                            </p:button>
-                        </p:panel>
-                    </h:panelGrid>
-                    <h:panelGrid>
-                        <p:panel>
-                            <p:dataTable var="car" value="#{dtBasicView.cars}">
-                                <p:column headerText="Motivo">
-                                    <h:outputText value="#{car.id}" />
-                                </p:column>
+                        <h:panelGrid style="float: outside">
+                            <p:panel>
+                                <p:commandButton value="Insertar" action="#{revisionBean.insertarRevision()}"/>                                                    
+                                <p:button value="Modificar">                    
+                                </p:button>
+                                <p:button value="Eliminar">                    
+                                </p:button>
+                            </p:panel>
+                        </h:panelGrid>
+                        <h:panelGrid>
+                            <p:panel>
+                                <p:dataTable var="listR" value="#{revisionBean.listaRevision}">
+                                    <p:column headerText="Motivo">
+                                        <h:outputText value="#{listR.motivo}" />
+                                    </p:column>
 
-                                <p:column headerText="Componenes Revisados">
-                                    <h:outputText value="#{car.year}" />
-                                </p:column>
+                                    <p:column headerText="Componenes Revisados">
+                                        <h:outputText value="#{listR.numeroComponentesRevisados}" />
+                                    </p:column>
 
-                                <p:column headerText="Detalle">
-                                    <h:outputText value="#{car.brand}" />
-                                </p:column>
-                                <p:column headerText="Observacion">
-                                    <h:outputText value="#{car.brand}" />
-                                </p:column>
-                                <p:column headerText="Numero de Orden Trabajo">
-                                    <h:outputText value="#{car.brand}" />
-                                </p:column>
-                            </p:dataTable>
-                        </p:panel>
-                    </h:panelGrid>
-                </td>
-            </tr>
-        </table>
-
-
-
-
+                                    <p:column headerText="Detalle">
+                                        <h:outputText value="#{listR.detalle}" />
+                                    </p:column>
+                                    <p:column headerText="Observacion">
+                                        <h:outputText value="#{listR.observacionRevision}" />
+                                    </p:column>
+                                    <p:column headerText="Numero de Orden Trabajo">
+                                        <h:outputText  />
+                                    </p:column>
+                                </p:dataTable>
+                            </p:panel>
+                        </h:panelGrid>
+                    </td>
+                </tr>
+            </table>
+        </h:form>
     </ui:define>
-
 </ui:composition>

@@ -26,18 +26,18 @@ public class OrdenTrabajo implements Serializable{
     private Date fechaRevision;
     private double costoTotal;
     
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToOne( fetch = FetchType.EAGER)
     @JoinColumn(name= "fkIdVehiculo")
     private Vehiculo vehiculo;
-    
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+   
+    @ManyToOne( fetch = FetchType.EAGER)
     @JoinColumn(name ="fkIdColaborador")
     private Colaborador colaborador;
 
-    @OneToMany(mappedBy = "orden", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "orden")
     private List<Revision> revisiones = new ArrayList<>();
     
-    @OneToMany(mappedBy = "orden", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "orden")
     private List<HistorialObservaciones> historiales = new ArrayList<>();
     
     public OrdenTrabajo() {

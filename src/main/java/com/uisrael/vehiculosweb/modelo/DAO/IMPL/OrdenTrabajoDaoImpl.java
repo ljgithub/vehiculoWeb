@@ -18,61 +18,50 @@ import javax.persistence.TypedQuery;
  *
  * @author jjmm7
  */
-public class OrdenTrabajoDaoImpl implements IOrdenTrabajoDao {
-
-    EntityManagerFactory emf = Persistence.createEntityManagerFactory("ProyectoVehiculosPU");
-    EntityManager em = emf.createEntityManager();
-
-    EntityTransaction et = em.getTransaction();
+public class OrdenTrabajoDaoImpl extends GenericaDaoImpl<OrdenTrabajo>implements IOrdenTrabajoDao {
 
     @Override
     public void insertarOrdenTrabajo(OrdenTrabajo ot) {
-        try {
-
-            et.begin();
-            em.persist(ot);
-
-            et.commit();
-
-            System.out.println("DAO:  Se inserto la Orden de Trabajo con los siguientes params " + ot);
-        } catch (Exception e) {
-            System.out.println("DAO:  Se produjo un error :" + e.getStackTrace());
-        }
+        this.create(ot);
     }
 
     @Override
     public List<OrdenTrabajo> listarOrdenTrabajoes() {
-        
+        /*
         String sentencia = "Select o from OrdenTrabajo o";
         
         TypedQuery typed = em.createQuery(sentencia, OrdenTrabajo.class);
         
         List<OrdenTrabajo> resultado = typed.getResultList();
         
-        
-        return resultado;
+        */
+        return null;
     }
 
     @Override
     public OrdenTrabajo buscarOrdenTrabajo(int id) {
+        
         String sentencia = "Select o from OrdenTrabajo o where o.idOrdTrabajo = " +id;
         
-        TypedQuery typed = em.createQuery(sentencia, OrdenTrabajo.class);
+        TypedQuery<OrdenTrabajo> typed = this.entityManager.createQuery(sentencia, OrdenTrabajo.class);
         
-        OrdenTrabajo resultado = (OrdenTrabajo)typed.getSingleResult();
+        OrdenTrabajo resultado = typed.getSingleResult();
                 
         return resultado;
+  
     }
 
     @Override
     public List<OrdenTrabajo> buscarOrdenTrabajoPorCosto(int costo) {
+        /*
         String sentencia = "Select o from OrdenTrabajo o where o.costoTotal >= " + costo;
         
         TypedQuery typed = em.createQuery(sentencia, OrdenTrabajo.class);
         
         List<OrdenTrabajo> resultado = typed.getResultList();
                 
-        return resultado;
+        return resultado;*/
+        return null;
     }
     
     

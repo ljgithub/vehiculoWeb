@@ -18,22 +18,12 @@ import javax.persistence.TypedQuery;
  *
  * @author jjmm7
  */
-public class VehiculoDaoImpl implements IVehiculoDao {
+public class VehiculoDaoImpl extends GenericaDaoImpl<Vehiculo>implements IVehiculoDao {
 
-    EntityManagerFactory emf = Persistence.createEntityManagerFactory("ProyectoVehiculosPU");
-    EntityManager em = emf.createEntityManager();
-
-    EntityTransaction et = em.getTransaction();
 
     @Override
     public void insertarVehiculo(Vehiculo v) {
-        try {
-            et.begin();
-            em.persist(v);
-            et.commit();            
-        } catch (Exception e) {
-            System.out.println("DAO:  Se produjo un error :" + e.getStackTrace());
-        }
+        this.create(v);
     }
 
     @Override
@@ -41,28 +31,31 @@ public class VehiculoDaoImpl implements IVehiculoDao {
         
         String sentencia = "Select v from Vehiculo v";
         
-        TypedQuery typed = em.createQuery(sentencia, Vehiculo.class);
+        TypedQuery typed = this.entityManager.createQuery(sentencia, Vehiculo.class);
         
         List<Vehiculo> resultado = typed.getResultList();
         
         
         return resultado;
+      
     }
 
     @Override
     public Vehiculo buscarVehiculo(int id) {
+        
         String sentencia = "Select v from Vehiculo v where v.idVehiculo = "+ id ;
         
-        TypedQuery typed = em.createQuery(sentencia, Vehiculo.class);
+        TypedQuery<Vehiculo> typed = this.entityManager.createQuery(sentencia, Vehiculo.class);
         
-        Vehiculo resultado = (Vehiculo)typed.getResultList();
-        
-        
+        Vehiculo resultado = typed.getSingleResult();
+                
         return resultado;
+  
     }
 
     @Override
     public List<Vehiculo> buscarVehiculosPorCapacidadPasajeros(int cantidadPasajeros) {
+        /*
         String sentencia = "Select v from Vehiculo v where v.capacidadPasajeros >= " + cantidadPasajeros;
         
         TypedQuery typed = em.createQuery(sentencia, Vehiculo.class);
@@ -70,7 +63,8 @@ public class VehiculoDaoImpl implements IVehiculoDao {
         List<Vehiculo> resultado = typed.getResultList();
         
         
-        return resultado;
+        return resultado;*/
+        return null;
     }
 
 }

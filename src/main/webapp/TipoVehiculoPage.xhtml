@@ -15,51 +15,55 @@
 
     <ui:define name="content">
 
-        <table border="1">
-            <tr>
-                <td>
-                    <h:panelGrid columns="1">            
-                        <p:outputLabel> Descripcion: </p:outputLabel>
-                        <p:inputText size="30"></p:inputText>
-                        <p:outputLabel> Funcion: </p:outputLabel>
-                        <p:inputText size="30"></p:inputText>
-                        <p:outputLabel> Estado: </p:outputLabel >
-                        <p:inputText size="30"></p:inputText>         
-                    </h:panelGrid>
-                </td>
-                <td style="vertical-align: initial">
+        <h:form>
+            <table border="1">
+                <tr>
+                    <td>
+                        <h:panelGrid columns="1">            
+                            <p:outputLabel> Descripcion: </p:outputLabel>
+                            <p:inputText size="30" id="txtDescrip" value="#{tipoVehiculoBean.descripcionTipoVehiculo}"></p:inputText>
+                            <p:outputLabel> Funcion: </p:outputLabel>
+                            <p:inputText size="30" id="txtfuncion" value="#{tipoVehiculoBean.funcionTipoVehiculo}"></p:inputText>
+                            <p:outputLabel> Estado: </p:outputLabel >
+                            <p:inputText size="30"></p:inputText>         
+                        </h:panelGrid>
+                    </td>
+                    <td style="vertical-align: initial">
 
 
-                    <h:panelGrid style="float: outside">
-                        <p:panel>
-                            <p:button value="Insertar">                    
-                            </p:button>
-                            <p:button value="Modificar">                    
-                            </p:button>
-                            <p:button value="Eliminar">                    
-                            </p:button>
-                        </p:panel>
-                    </h:panelGrid>
-                    <h:panelGrid>
-                        <p:panel>
-                            <p:dataTable var="car" value="#{dtBasicView.cars}">
-                                <p:column headerText="Descripcion">
-                                    <h:outputText value="#{car.id}" />
-                                </p:column>
+                        <h:panelGrid style="float: outside">
+                            <p:panel>
+                                <p:commandButton value="Guardar" action="#{tipoVehiculoBean.insertarTipoVehiculo()}">                    
+                                </p:commandButton>
+                                <p:button value="Modificar">                    
+                                </p:button>
+                                <p:button value="Eliminar">                    
+                                </p:button>
+                            </p:panel>
+                        </h:panelGrid>
 
-                                <p:column headerText="Funcion">
-                                    <h:outputText value="#{car.year}" />
-                                </p:column>
 
-                                <p:column headerText="Estado">
-                                    <h:outputText value="#{car.brand}" />
-                                </p:column>
-                            </p:dataTable>
-                        </p:panel>
-                    </h:panelGrid>
-                </td>
-            </tr>
-        </table>
+                        <h:panelGrid>
+                            <p:panel>
+                                <p:dataTable var="list" value="#{tipoVehiculoBean.listaTipoVehiculos}">
+                                    <p:column headerText="Descripcion">
+                                        <h:outputText value="#{list.descripcionTipoVehiculo}" />
+                                    </p:column>
+
+                                    <p:column headerText="Funcion">
+                                        <h:outputText value="#{list.funcionTipoVehiculo}" />
+                                    </p:column>
+
+                                    <p:column headerText="Estado">
+                                        <h:outputText  />
+                                    </p:column>
+                                </p:dataTable>
+                            </p:panel>
+                        </h:panelGrid>
+                    </td>
+                </tr>
+            </table>
+        </h:form>
     </ui:define>
 
 </ui:composition>

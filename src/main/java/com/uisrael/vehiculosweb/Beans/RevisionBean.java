@@ -5,27 +5,60 @@
  */
 package com.uisrael.vehiculosweb.Beans;
 
+import com.sun.org.apache.bcel.internal.generic.IREM;
+import com.uisrael.vehiculosweb.controlador.IMPL.RevisionControllerImpl;
+import com.uisrael.vehiculosweb.controlador.IRevisionController;
+import com.uisrael.vehiculosweb.modelo.Entidades.Revision;
+import java.io.Serializable;
+import java.util.List;
+import javax.annotation.PostConstruct;
 import javax.inject.Named;
 import javax.enterprise.context.Dependent;
+import javax.faces.bean.ManagedBean;
+import javax.faces.view.ViewScoped;
 
 /**
  *
  * @author JAVIER
  */
-@Named(value = "revisionBean")
-@Dependent
-public class RevisionBean {
+@ManagedBean(name = "revisionBean")
+@ViewScoped
+public class RevisionBean implements Serializable{
 
+    private static final IRevisionController controller = new RevisionControllerImpl();
+    
     private int idRevision;
     private String motivo;
     private int numeroComponentesRevisados;
     private String detalle;
     private String observacionRevision;
     
+    private Revision revision;
+    private List<Revision> listaRevision;
+    
     /**
      * Creates a new instance of RevisionBean
      */
     public RevisionBean() {
+    }
+    
+    @PostConstruct
+    public void init(){
+        
+    }
+    
+    public void insertarRevision(){
+        revision= new Revision();
+        revision.setMotivo(motivo);
+        revision.setNumeroComponentesRevisados(numeroComponentesRevisados);
+        revision.setDetalle(detalle);
+        revision.setObservacionRevision(observacionRevision);
+        
+        controller.insertarRevision(revision);
+        
+        System.out.println("Revision insertada: " + motivo);
+        
+        
     }
 
     public int getIdRevision() {
@@ -66,6 +99,14 @@ public class RevisionBean {
 
     public void setObservacionRevision(String observacionRevision) {
         this.observacionRevision = observacionRevision;
+    }
+
+    public List<Revision> getListaRevision() {
+        return listaRevision;
+    }
+
+    public void setListaRevision(List<Revision> listaRevision) {
+        this.listaRevision = listaRevision;
     }
     
     

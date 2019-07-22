@@ -15,55 +15,52 @@
 
     <ui:define name="content">
 
-        <table border="1">
-            <tr>
-                <td>
-                    <h:panelGrid columns="1">            
-                        <p:outputLabel> Observaciones: </p:outputLabel>
-                        <p:inputText size="30"></p:inputText>
-                        <p:outputLabel> Proxima Visita: </p:outputLabel>
-                        <p:inputText size="30"></p:inputText>
-                        <p:outputLabel> Numuero de Orden: </p:outputLabel>
-                        <p:inputText size="30"></p:inputText>                                  
-                    </h:panelGrid>
-                </td>
-                <td style="vertical-align: initial">
+        <h:form>
+
+            <table border="1">
+                <tr>
+                    <td>
+                        <h:panelGrid columns="1">            
+                            <p:outputLabel> Observaciones: </p:outputLabel> <p:inputText size="30" value="#{historialBean.observaciones}"/>
+
+                            <p:outputLabel> Proxima Visita: </p:outputLabel> <p:calendar id="dp_fechaProx" value="#{historialBean.proximaVisitaRe}" showOn="button" />
+
+                            <p:outputLabel> Numuero de Orden: </p:outputLabel> <p:inputText size="30" ></p:inputText>
+
+                        </h:panelGrid>
+                    </td>
+                    <td style="vertical-align: initial">
 
 
-                    <h:panelGrid style="float: outside">
-                        <p:panel>
-                            <p:button value="Insertar">                    
-                            </p:button>
-                            <p:button value="Modificar">                    
-                            </p:button>
-                            <p:button value="Eliminar">                    
-                            </p:button>
-                        </p:panel>
-                    </h:panelGrid>
-                    <h:panelGrid>
-                        <p:panel>
-                            <p:dataTable var="car" value="#{dtBasicView.cars}">
-                                <p:column headerText="Observaciones">
-                                    <h:outputText value="#{car.id}" />
-                                </p:column>
+                        <h:panelGrid style="float: outside">
+                            <p:panel>
+                                <p:commandButton value="Insertar" action="#{historialBean.insertarHistorial()}"/>                                                    
+                                <p:button value="Modificar">                    
+                                </p:button>
+                                <p:button value="Eliminar">                    
+                                </p:button>
+                            </p:panel>
+                        </h:panelGrid>
+                        <h:panelGrid>
+                            <p:panel>
+                                <p:dataTable var="list" value="#{historialBean.listaHistorial}">
+                                    <p:column headerText="Observaciones">
+                                        <h:outputText value="#{list.observaciones}" />
+                                    </p:column>
 
-                                <p:column headerText="Proxima Visita">
-                                    <h:outputText value="#{car.year}" />
-                                </p:column>
+                                    <p:column headerText="Proxima Visita">
+                                        <h:outputText value="#{list.proximaVisitaRe}" />
+                                    </p:column>
 
-                                <p:column headerText="Numero de Orden">
-                                    <h:outputText value="#{car.brand}" />
-                                </p:column>
-                            </p:dataTable>
-                        </p:panel>
-                    </h:panelGrid>
-                </td>
-            </tr>
-        </table>
-
-
-
-
+                                    <p:column headerText="Numero de Orden">
+                                        <h:outputText value="#{list.orden.idOrdTrabajo}" />
+                                    </p:column>
+                                </p:dataTable>
+                            </p:panel>
+                        </h:panelGrid>
+                    </td>
+                </tr>
+            </table>
+        </h:form>
     </ui:define>
-
 </ui:composition>

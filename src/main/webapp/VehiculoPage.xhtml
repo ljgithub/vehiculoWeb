@@ -3,7 +3,9 @@
 <ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
                 xmlns:p="http://primefaces.org/ui"
                 template="/welcomePrimefaces.xhtml"
-                xmlns:h="http://xmlns.jcp.org/jsf/html">
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                >
 
     <ui:define name="titulo">
         Colaborador
@@ -15,65 +17,67 @@
 
     <ui:define name="content">
 
-        <table border="1">
-            <tr>
-                <td>
-                    <h:panelGrid columns="1">            
-                        <p:outputLabel> Descripcion: </p:outputLabel>
-                        <p:inputText size="30"></p:inputText>
-                        <p:outputLabel> CantidadPasajeros: </p:outputLabel>
-                        <p:inputText size="30"></p:inputText>
-                        <p:outputLabel> Kilometraje: </p:outputLabel>
-                        <p:inputText size="30"></p:inputText>
-                        <p:outputLabel> Cilindraje : </p:outputLabel>
-                        <p:inputText size="30"></p:inputText>
-                        <p:outputLabel> Estado: </p:outputLabel>
-                        <p:inputText size="30"></p:inputText>           
-                    </h:panelGrid>
-                </td>
-                <td style="vertical-align: initial">
+        <h:form>
+            <table border="1">
+                <tr>
+                    <td>
+                        <h:panelGrid columns="1">            
+                            <p:outputLabel> Descripcion: </p:outputLabel> <p:inputText size="30" value="#{vehiiculoBean.descripcionVehiculo}"/>
+
+                            <p:outputLabel> CantidadPasajeros: </p:outputLabel><p:inputText size="30" value="#{vehiiculoBean.capacidadPasajeros}"/>
+
+                            <p:outputLabel> Kilometraje: </p:outputLabel> <p:inputText size="30" />
+
+                            <p:outputLabel> Cilindraje : </p:outputLabel> <p:inputText size="30"/>
+
+                            <p:outputLabel> TipoVehiculo : </p:outputLabel> 
+                            <p:selectOneMenu id="cb_tipo" style="width:150px" value="#{vehiiculoBean.idTipoSelected}">
+                                <f:selectItem itemLabel="Selecciona Tipo" itemValue="0" />
+                                <f:selectItems value="#{vehiiculoBean.listaTipos}"  var="tiposItem" itemLabel="#{tiposItem.descripcionTipoVehiculo}"  itemValue="#{tiposItem.idTipoVehiculo}"/>
+                            </p:selectOneMenu>                           
+
+                            <p:outputLabel> Estado: </p:outputLabel> <p:inputText size="30" value="#{vehiiculoBean.estado}"/>
+
+                        </h:panelGrid>
+                    </td>
+                    <td style="vertical-align: initial">
 
 
-                    <h:panelGrid style="float: outside">
-                        <p:panel>
-                            <p:button value="Insertar">                    
-                            </p:button>
-                            <p:button value="Modificar">                    
-                            </p:button>
-                            <p:button value="Eliminar">                    
-                            </p:button>
-                        </p:panel>
-                    </h:panelGrid>
-                    <h:panelGrid>
-                        <p:panel>
-                            <p:dataTable var="car" value="#{dtBasicView.cars}">
-                                <p:column headerText="Descripcion">
-                                    <h:outputText value="#{car.id}" />
-                                </p:column>
+                        <h:panelGrid style="float: outside">
+                            <p:panel>
+                                <p:commandButton value="Insertar" action="#{vehiiculoBean.insertarVehiculo()}" />                                                    
+                                <p:button value="Modificar">                    
+                                </p:button>
+                                <p:button value="Eliminar">                    
+                                </p:button>
+                            </p:panel>
+                        </h:panelGrid>
+                        <h:panelGrid>
+                            <p:panel>
+                                <p:dataTable var="listV" value="#{vehiiculoBean.listaVehiculos}">
+                                    <p:column headerText="Descripcion">
+                                        <h:outputText value="#{listV.descripcionVehiculo}" />
+                                    </p:column>
 
-                                <p:column headerText="Numero Pasajeros">
-                                    <h:outputText value="#{car.year}" />
-                                </p:column>
+                                    <p:column headerText="Numero Pasajeros">
+                                        <h:outputText value="#{listV.capacidadPasajeros}" />
+                                    </p:column>
 
-                                <p:column headerText="Kilometraje">
-                                    <h:outputText value="#{car.brand}" />
-                                </p:column>
-                                <p:column headerText="Cilindraje">
-                                    <h:outputText value="#{car.brand}" />
-                                </p:column>
-                                <p:column headerText="Estado">
-                                    <h:outputText value="#{car.brand}" />
-                                </p:column>
-                            </p:dataTable>
-                        </p:panel>
-                    </h:panelGrid>
-                </td>
-            </tr>
-        </table>
-
-
-
-
+                                    <p:column headerText="Kilometraje">
+                                        <h:outputText  />
+                                    </p:column>
+                                    <p:column headerText="Cilindraje">
+                                        <h:outputText  />
+                                    </p:column>                                    
+                                    <p:column headerText="Estado">
+                                        <h:outputText value="#{listV.estado}"  />
+                                    </p:column>
+                                </p:dataTable>
+                            </p:panel>
+                        </h:panelGrid>
+                    </td>
+                </tr>
+            </table>
+        </h:form>
     </ui:define>
-
 </ui:composition>

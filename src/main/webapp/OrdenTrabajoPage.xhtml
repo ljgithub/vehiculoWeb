@@ -3,6 +3,7 @@
 <ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
                 xmlns:p="http://primefaces.org/ui"
                 template="/welcomePrimefaces.xhtml"
+                xmlns:f="http://java.sun.com/jsf/core"
                 xmlns:h="http://xmlns.jcp.org/jsf/html">
 
     <ui:define name="titulo">
@@ -14,61 +15,69 @@
     </ui:define>
 
     <ui:define name="content">
+        <h:form>
+            <table border="1">
+                <tr>
+                    <td>
+                        <h:panelGrid columns="1">            
+                            <p:outputLabel> Informacion Adicional: </p:outputLabel><p:inputText size="30" value="#{ordenTrabajoBean.infoAdicional}" />
 
-        <table border="1">
-            <tr>
-                <td>
-                    <h:panelGrid columns="1">            
-                        <p:outputLabel> Informacion Adicional: </p:outputLabel>
-                        <p:inputText size="30"></p:inputText>
-                        <p:outputLabel> Fecha Revision: </p:outputLabel>
-                        <p:inputText size="30"></p:inputText>
-                        <p:outputLabel> Costo Total: </p:outputLabel>
-                        <p:inputText size="30"></p:inputText>
-                        <p:outputLabel> Vehiculo </p:outputLabel>
-                        <p:inputText size="30"></p:inputText>
-                        <p:outputLabel> Colaborador: </p:outputLabel>
-                        <p:inputText size="30"></p:inputText>           
-                    </h:panelGrid>
-                </td>
-                <td style="vertical-align: initial">
+                            <p:outputLabel> Fecha Revision: </p:outputLabel><p:calendar size="30" value="#{ordenTrabajoBean.fechaRevision}" showOn="button"/>
+
+                            <p:outputLabel> Costo Total: </p:outputLabel><p:inputText size="30" value="#{ordenTrabajoBean.costoTotal}" />
+
+                            <p:outputLabel> Vehiculo </p:outputLabel>
+                            <p:selectOneMenu id="cb_Vehiculo" style="width:150px" value="#{ordenTrabajoBean.fkIdVehiculo}">
+                                <f:selectItem itemLabel="Selecciona Tipo" itemValue="0" />
+                                <f:selectItems value="#{ordenTrabajoBean.listaVehiculos}"  var="vehiItem" itemLabel="#{vehiItem.descripcionVehiculo}"  itemValue="#{vehiItem.idVehiculo}"/>
+                            </p:selectOneMenu> 
+
+                            <p:outputLabel> Colaborador: </p:outputLabel> 
+                            <p:selectOneMenu id="cb_Colaborador" style="width:150px" value="#{ordenTrabajoBean.fkIdColaborador}">
+                                <f:selectItem itemLabel="Selecciona Tipo" itemValue="0" />
+                                <f:selectItems value="#{ordenTrabajoBean.listaColaboradores}"  var="colItem" itemLabel="#{colItem.nombres}"  itemValue="#{colItem.idColaborador}"/>
+                            </p:selectOneMenu>          
+
+                        </h:panelGrid>
+                    </td>
+                    <td style="vertical-align: initial">
 
 
-                    <h:panelGrid style="float: outside">
-                        <p:panel>
-                            <p:button value="Insertar">                    
-                            </p:button>
-                            <p:button value="Modificar">                    
-                            </p:button>
-                            <p:button value="Eliminar">                    
-                            </p:button>
-                        </p:panel>
-                    </h:panelGrid>
-                    <h:panelGrid>
-                        <p:panel>
-                            <p:dataTable var="car" value="#{dtBasicView.cars}">
-                                <p:column headerText="Informacion Adicional">
-                                    <h:outputText value="#{car.id}" />
-                                </p:column>
+                        <h:panelGrid style="float: outside">
+                            <p:panel>
+                                <p:commandButton value="Insertar" action="#{ordenTrabajoBean.insertarOrden()}"/>                                                
+                                    <p:button value="Modificar">                    
+                                    </p:button>
+                                    <p:button value="Eliminar">                    
+                                    </p:button>
+                            </p:panel>
+                        </h:panelGrid>
+                        <h:panelGrid>
+                            <p:panel>
+                                <p:dataTable var="list" value="#{ordenTrabajoBean.listaOrdenes}">
+                                    <p:column headerText="Informacion Adicional">
+                                        <h:outputText value="#{list.infoAdicional}" />
+                                    </p:column>
 
-                                <p:column headerText="Fecha">
-                                    <h:outputText value="#{car.year}" />
-                                </p:column>
+                                    <p:column headerText="Fecha">
+                                        <h:outputText value="#{list.fechaRevision}"/>
+                                    </p:column>
 
-                                <p:column headerText="Costo">
-                                    <h:outputText value="#{car.brand}" />
-                                </p:column>
-                                <p:column headerText="Vehiculo">
-                                    <h:outputText value="#{car.brand}" />
-                                </p:column>
-                                <p:column headerText="Colaborador">
-                                    <h:outputText value="#{car.brand}" />
-                                </p:column>
-                            </p:dataTable>
-                        </p:panel>
-                    </h:panelGrid>
-                </td>
-            </tr>
-        </table>
+                                    <p:column headerText="Costo">
+                                        <h:outputText  />
+                                    </p:column>
+                                    <p:column headerText="Vehiculo">
+                                        <h:outputText value="#{car.brand}" />
+                                    </p:column>
+                                    <p:column headerText="Colaborador">
+                                        <h:outputText  />
+                                    </p:column>
+                                </p:dataTable>
+                            </p:panel>
+                        </h:panelGrid>
+                    </td>
+                </tr>
+            </table>
+        </h:form>
     </ui:define>
 </ui:composition>

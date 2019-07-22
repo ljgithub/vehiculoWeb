@@ -5,24 +5,53 @@
  */
 package com.uisrael.vehiculosweb.Beans;
 
+import com.uisrael.vehiculosweb.controlador.IHistorialObservacionesController;
+import com.uisrael.vehiculosweb.controlador.IMPL.HistorialObservaControllerImpl;
+import com.uisrael.vehiculosweb.modelo.Entidades.HistorialObservaciones;
+import java.io.Serializable;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
+import javax.annotation.PostConstruct;
+import javax.faces.bean.ManagedBean;
 import javax.inject.Named;
 import javax.faces.view.ViewScoped;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 /**
  *
  * @author JAVIER
  */
-@Named(value = "historialObservacionesBean")
+@ManagedBean(name = "historialBean")
 @ViewScoped
-public class HistorialObservacionesBean {
+public class HistorialObservacionesBean implements Serializable{
 
+    private static  final IHistorialObservacionesController controller = new HistorialObservaControllerImpl();
+    
     private int idHistorial;
     private String observaciones;    
     private Date proximaVisitaRe;
+    
+    private HistorialObservaciones historial;
 
+    private List<HistorialObservaciones> listaHistorial;
+
+    public HistorialObservacionesBean() {
+    }
+    
+    @PostConstruct
+    public void init(){
+        
+    }
+    
+     public void insertarHistorial(){
+         historial= new HistorialObservaciones();
+        historial.setObservaciones(observaciones);
+        historial.setProximaVisitaRe(proximaVisitaRe);
+        controller.insertarHistorialObservaciones(historial);
+        System.err.println("Historial Insertado" +  observaciones);
+    }
+    
+    
     public int getIdHistorial() {
         return idHistorial;
     }
@@ -45,6 +74,14 @@ public class HistorialObservacionesBean {
 
     public void setProximaVisitaRe(Date proximaVisitaRe) {
         this.proximaVisitaRe = proximaVisitaRe;
+    }
+
+    public List<HistorialObservaciones> getListaHistorial() {
+        return listaHistorial;
+    }
+
+    public void setListaHistorial(List<HistorialObservaciones> listaHistorial) {
+        this.listaHistorial = listaHistorial;
     }
  
     
